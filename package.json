@@ -1,13 +1,16 @@
 {
   "name": "visualize-repo",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "scripts": {
-    "build": "node_modules/.bin/esbuild --target=es2019 ./src/index.jsx --bundle --platform=node --outfile=index.js",
+    "build": "node_modules/.bin/esbuild --target=es2019 ./src/index.jsx --bundle --platform=node --outfile=bin/index.js",
     "prepare": "husky install"
   },
   "bin" : {
-    "visualize-repo" : "node index.js"
+    "visualize-repo" : "bin/index.js"
   },
+  "files": [
+    "bin/"
+  ],
   "dependencies": {
     "@actions/core": "^1.4.0",
     "@actions/exec": "^1.1.0",

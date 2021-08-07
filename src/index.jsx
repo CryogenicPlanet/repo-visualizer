@@ -12,13 +12,15 @@ const main = async () => {
     "[INFO] Usage https://github.com/githubocto/repo-visualizer#readme"
   );
 
+  const cwd = process.cwd();
+
   const maxDepth = core.getInput("max_depth") || 9;
   const colorEncoding = core.getInput("color_encoding") || "type";
   const excludedPathsString =
     core.getInput("excluded_paths") ||
     "node_modules,bower_components,dist,out,build,eject,.next,.netlify,.yarn,.git,.vscode,package-lock.json,yarn.lock";
   const excludedPaths = excludedPathsString.split(",").map((str) => str.trim());
-  const data = await processDir(`./`, excludedPaths);
+  const data = await processDir(cwd, excludedPaths);
 
   const componentCodeString = ReactDOMServer.renderToStaticMarkup(
     <Tree data={data} maxDepth={+maxDepth} colorEncoding={colorEncoding} />

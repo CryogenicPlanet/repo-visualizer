@@ -17905,11 +17905,12 @@ var getSortOrder = (item, cachedOrders, i = 0) => {
 // src/index.jsx
 var main = async () => {
   core.info("[INFO] Usage https://github.com/githubocto/repo-visualizer#readme");
+  const cwd = process.cwd();
   const maxDepth = core.getInput("max_depth") || 9;
   const colorEncoding = core.getInput("color_encoding") || "type";
   const excludedPathsString = core.getInput("excluded_paths") || "node_modules,bower_components,dist,out,build,eject,.next,.netlify,.yarn,.git,.vscode,package-lock.json,yarn.lock";
   const excludedPaths = excludedPathsString.split(",").map((str) => str.trim());
-  const data = await processDir(`./`, excludedPaths);
+  const data = await processDir(cwd, excludedPaths);
   const componentCodeString = import_server.default.renderToStaticMarkup(/* @__PURE__ */ import_react3.default.createElement(Tree, {
     data,
     maxDepth: +maxDepth,
